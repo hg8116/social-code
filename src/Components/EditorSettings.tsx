@@ -1,11 +1,10 @@
 import { FC, useCallback } from 'react'
-import { Extension, EditorView } from "@uiw/react-codemirror"
+import { Extension } from "@uiw/react-codemirror"
 import { themes } from "../utils/Themes"
 import { fontFamilies } from '../utils/Fonts'
 
 interface EditorSettingsProps{
     fontSize: string
-    theme: Extension
     height: string
     width: string
     fontFamily: string
@@ -18,7 +17,6 @@ interface EditorSettingsProps{
 
 const EditorSettings : FC<EditorSettingsProps> = ({
     fontSize,
-    theme,
     height,
     width,
     fontFamily,
