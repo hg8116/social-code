@@ -6,3 +6,7 @@
 .cm-activeLine {
     background-color: transparent !important;
   }
+
+  .cm-activeLineGutter {
+    background-color: transparent !important;
+  }
