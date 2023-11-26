@@ -20,15 +20,14 @@ const Topbar: FC = () => {
           </svg>
           <span className="ml-3 text-xl">Social Code</span>
         </a>
-        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center flex-shrink">
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center flex-shrink md:w-[700px] sm:w-full">
           <Carousel
             autoPlay
             infiniteLoop
             showThumbs={false}
             showStatus={false}
             showArrows={false}
-            interval={4000}
-            className="w-full md:w-1/2">
+            interval={4000}>
             <div>
               <p>
                 Generate stunning code snippet images for social media sharing!

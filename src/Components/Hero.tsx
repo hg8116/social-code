@@ -7,9 +7,9 @@ import domtoimage from "dom-to-image"
 
 const Hero: FC = () => {
   const [editorTheme, setEditorTheme] = useState<Extension>(themes[0].libName)
-  const [fontSize, setFontSize] = useState<string>("16px")
-  const [height, setHeight] = useState<string>("200px")
-  const [width, setWidth] = useState<string>("600px")
+  const [fontSize, setFontSize] = useState<string>("16")
+  const [height, setHeight] = useState<string>("200")
+  const [width, setWidth] = useState<string>("600")
   const [fontFamily, setFontFamily] = useState<string>("monospace")
   const [titleBarStyle, setTitleBarStyle] = useState<string>("mac")
 

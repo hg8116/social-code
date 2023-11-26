@@ -107,11 +107,11 @@ const CodeBox: FC<CodeBoxProps> = ({
         <CodeMirror
           value={value}
           theme={theme}
-          minHeight={height}
-          minWidth={width}
+          minHeight={height + "px"}
+          minWidth={width + "px"}
           extensions={[javascript({ jsx: true })]}
           onChange={onChange}
-          style={{ fontSize: fontSize, fontFamily: fontFamily }}
+          style={{ fontSize: fontSize + "px", fontFamily: fontFamily }}
         />
       </div>
     </div>
