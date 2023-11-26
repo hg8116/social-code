@@ -65,7 +65,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={fontSize}
@@ -83,7 +83,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={height}
@@ -101,7 +101,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={width}
@@ -123,7 +123,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
               id="grid-state" onChange={handleThemeChange}>
               {themes.map((theme, index) => (
                 <option key={index} value={index}>
-                  {theme.name}
+                  {theme.name.charAt(0).toUpperCase() + theme.name.slice(1)}
                 </option>
               ))}
             </select>

@@ -81,7 +81,6 @@ const Hero: FC = () => {
           className=" bg-white-200 flex justify-center items-center px-20 py-10"
           ref={printRef}>
           <CodeBox
-            // printRef={printRef}
             fontSize={fontSize}
             theme={editorTheme}
             height={height}
@@ -108,7 +107,7 @@ const Hero: FC = () => {
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
             {isDropdownOpen && (
-              <div ref={dropdownRef} className="absolute bg-white text-black rounded mt-2 py-2 w-48 top-full left-0">
+              <div ref={dropdownRef} className="absolute bg-white text-black rounded mt-2 w-48 top-full left-0 border-2">
                 <p
                   className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
                   onClick={() => {
