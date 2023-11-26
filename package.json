@@ -14,11 +14,13 @@
     "@codemirror/lang-javascript": "^6.2.1",
     "@uiw/codemirror-themes-all": "^4.21.20",
     "@uiw/react-codemirror": "^4.21.20",
+    "dom-to-image": "^2.6.0",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/dom-to-image": "^2.6.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
