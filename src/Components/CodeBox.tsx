@@ -65,12 +65,16 @@ const CodeBox: FC<CodeBoxProps> = ({
             </div>
           ) : null}
           <div className="title-text w-full text-center">
-            <div contentEditable className="focus:outline-none inline-block" suppressContentEditableWarning={true} onKeyDown={(event) => {
-              if (event.key === "Enter") {
-                event.preventDefault()
-                event.currentTarget.blur()
-              }
-            }}>
+            <div
+              contentEditable
+              className="focus:outline-none inline-block"
+              suppressContentEditableWarning={true}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault()
+                  event.currentTarget.blur()
+                }
+              }}>
               Title.cpp
             </div>
           </div>

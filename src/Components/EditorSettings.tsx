@@ -1,14 +1,13 @@
 import { FC, useCallback } from "react"
 import { Extension } from "@uiw/react-codemirror"
 import { themes } from "../utils/Themes"
-import { fontFamilies } from "../utils/Fonts"
+// import { fontFamilies } from "../utils/Fonts"
 
 interface EditorSettingsProps {
   fontSize: string
   height: string
   width: string
   fontFamily: string
-  titleBarStyle: string
   onFontSizeChange: (fontSize: string) => void
   onThemeChange: (theme: Extension) => void
   onHeightChange: (height: string) => void
@@ -21,8 +20,8 @@ const EditorSettings: FC<EditorSettingsProps> = ({
   fontSize,
   height,
   width,
+  // @ts-ignore
   fontFamily,
-  titleBarStyle,
   onFontSizeChange,
   onThemeChange,
   onHeightChange,
@@ -38,6 +37,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
     []
   )
 
+  // @ts-ignore
   const handleFontFamilyChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       onFontFamilyChange(e.target.value)

@@ -68,7 +68,6 @@ const Hero: FC = () => {
         height={height}
         width={width}
         fontFamily={fontFamily}
-        titleBarStyle={titleBarStyle}
         onFontSizeChange={setFontSize}
         onThemeChange={setEditorTheme}
         onHeightChange={setHeight}
