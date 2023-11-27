@@ -26,7 +26,8 @@ const CodeBox: FC<CodeBoxProps> = ({
   }, [])
 
   return (
-    <div className="shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+    // <div className="shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+    <div className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.4),_0px_16px_56px_rgba(17,17,26,0.4)]">
       <div>
         <div
           className={`title-bar relative w-[${width}px] bg-indigo-50 flex items-center justify-between py-[0.4rem] px-3 text-sm border border-gray-400 border-opacity-70 rounded-[4px_4px_0px_0px]`}
