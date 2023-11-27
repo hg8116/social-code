@@ -12,6 +12,7 @@ const Hero: FC = () => {
   const [width, setWidth] = useState<string>("600")
   const [fontFamily, setFontFamily] = useState<string>("monospace")
   const [titleBarStyle, setTitleBarStyle] = useState<string>("mac")
+  const [bgColor, setBgColor] = useState<string>("#ffffff")
 
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
 
@@ -68,16 +69,19 @@ const Hero: FC = () => {
         height={height}
         width={width}
         fontFamily={fontFamily}
+        bgColor={bgColor}
         onFontSizeChange={setFontSize}
         onThemeChange={setEditorTheme}
         onHeightChange={setHeight}
         onWidthChange={setWidth}
         onFontFamilyChange={setFontFamily}
         onTitleBarStyleChange={setTitleBarStyle}
+        onBgColorChange={setBgColor}
       />
       <div className="border-2 border-dashed border-blue-600">
         <div
-          className=" bg-white-200 flex justify-center items-center px-20 py-10"
+          className="flex justify-center items-center px-20 py-10"
+          style={{ backgroundColor: bgColor, backgroundImage:"url(https://images.unsplash.com/photo-1700475477254-5986ff2f1dc3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)", backgroundSize: "cover", backgroundPosition: "center"}}
           ref={printRef}>
           <CodeBox
             fontSize={fontSize}

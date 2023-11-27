@@ -24,6 +24,7 @@ const Topbar: FC = () => {
           <Carousel
             autoPlay
             infiniteLoop
+            showIndicators={false}
             showThumbs={false}
             showStatus={false}
             showArrows={false}

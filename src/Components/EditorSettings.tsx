@@ -1,6 +1,7 @@
-import { FC, useCallback } from "react"
+import { FC, useCallback, useState } from "react"
 import { Extension } from "@uiw/react-codemirror"
 import { themes } from "../utils/Themes"
+import { Sketch } from "@uiw/react-color"
 // import { fontFamilies } from "../utils/Fonts"
 
 interface EditorSettingsProps {
@@ -8,12 +9,14 @@ interface EditorSettingsProps {
   height: string
   width: string
   fontFamily: string
+  bgColor: string
   onFontSizeChange: (fontSize: string) => void
   onThemeChange: (theme: Extension) => void
   onHeightChange: (height: string) => void
   onWidthChange: (width: string) => void
   onFontFamilyChange: (font: string) => void
   onTitleBarStyleChange: (style: string) => void
+  onBgColorChange: (color: string) => void
 }
 
 const EditorSettings: FC<EditorSettingsProps> = ({
@@ -22,13 +25,17 @@ const EditorSettings: FC<EditorSettingsProps> = ({
   width,
   // @ts-ignore
   fontFamily,
+  bgColor,
   onFontSizeChange,
   onThemeChange,
   onHeightChange,
   onWidthChange,
   onFontFamilyChange,
   onTitleBarStyleChange,
+  onBgColorChange,
 }) => {
+  const [isBgSelectOpen, setIsBgSelectOpen] = useState<boolean>(false)
+
   const handleThemeChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const themeIndex = Number(e.target.value)
@@ -65,7 +72,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 h-11 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={fontSize}
@@ -83,7 +90,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 h-11 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={height}
@@ -101,7 +108,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 h-11 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               value={width}
@@ -119,8 +126,9 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="relative">
             <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-state" onChange={handleThemeChange}>
+              className="block appearance-none h-11 w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+              onChange={handleThemeChange}>
               {themes.map((theme, index) => (
                 <option key={index} value={index}>
                   {theme.name.charAt(0).toUpperCase() + theme.name.slice(1)}
@@ -147,8 +155,9 @@ const EditorSettings: FC<EditorSettingsProps> = ({
           </div>
           <div className="relative">
             <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-state" onChange={handleTitleBarStyleChange}>
+              className="block appearance-none h-11 w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+              onChange={handleTitleBarStyleChange}>
               <option value="mac">Mac</option>
               <option value="windows">Windows</option>
             </select>
@@ -159,6 +168,36 @@ const EditorSettings: FC<EditorSettingsProps> = ({
                 viewBox="0 0 20 20">
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center">
+          <div className="">
+            <div>
+              <div
+                className={`color-picker-box h-11 w-11 rounded border-black border-2 relative`}
+                style={{ backgroundColor: bgColor }}
+                onClick={() => setIsBgSelectOpen(!isBgSelectOpen)}></div>
+              {isBgSelectOpen && (
+                <div className="bg-options-container absolute rounded right-20 mt-3 flex flex-col justify-center items-center bg-blue-50 p-4 border-2">
+                  <div className="bg-button-container flex flex-row flex-1 mb-2 border-black">
+                    <div className="color-button flex justify-center items-center border-black border-2 px-8">
+                      Color
+                    </div>
+                    <div className="image-button flex justify-center items-center border-black border-2 px-8">
+                      Image
+                    </div>
+                  </div>
+                  <Sketch
+                    className="flex-1"
+                    color={bgColor}
+                    onChange={(color) => {
+                      onBgColorChange(color.hex)
+                      console.log(color.hex)
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
