@@ -28,7 +28,9 @@ const Topbar: FC = () => {
             showThumbs={false}
             showStatus={false}
             showArrows={false}
-            interval={4000}>
+            interval={4000}
+            className="text-[18px] text-black"
+            >
             <div>
               <p>
                 Generate stunning code snippet images for social media sharing!

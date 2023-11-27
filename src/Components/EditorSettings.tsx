@@ -10,6 +10,7 @@ interface EditorSettingsProps {
   width: string
   fontFamily: string
   bgColor: string
+  bgImage: string | null
   onFontSizeChange: (fontSize: string) => void
   onThemeChange: (theme: Extension) => void
   onHeightChange: (height: string) => void
@@ -17,6 +18,7 @@ interface EditorSettingsProps {
   onFontFamilyChange: (font: string) => void
   onTitleBarStyleChange: (style: string) => void
   onBgColorChange: (color: string) => void
+  onBgImageChange: (image: string) => void
 }
 
 const EditorSettings: FC<EditorSettingsProps> = ({
@@ -26,6 +28,7 @@ const EditorSettings: FC<EditorSettingsProps> = ({
   // @ts-ignore
   fontFamily,
   bgColor,
+  bgImage,
   onFontSizeChange,
   onThemeChange,
   onHeightChange,
@@ -33,8 +36,12 @@ const EditorSettings: FC<EditorSettingsProps> = ({
   onFontFamilyChange,
   onTitleBarStyleChange,
   onBgColorChange,
+  onBgImageChange,
+
 }) => {
   const [isBgSelectOpen, setIsBgSelectOpen] = useState<boolean>(false)
+  const [isBgColorSelectOpen, setIsBgColorSelectOpen] = useState<boolean>(true)
+  const [isBgImageSelectOpen, setIsBgImageSelectOpen] = useState<boolean>(false)
 
   const handleThemeChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -58,6 +65,10 @@ const EditorSettings: FC<EditorSettingsProps> = ({
     },
     [onTitleBarStyleChange]
   )
+
+  const HandleBgImageChange = (image: string) => {
+    onBgImageChange(image)
+  }
 
   return (
     <div>
@@ -180,22 +191,58 @@ const EditorSettings: FC<EditorSettingsProps> = ({
                 onClick={() => setIsBgSelectOpen(!isBgSelectOpen)}></div>
               {isBgSelectOpen && (
                 <div className="bg-options-container absolute rounded right-20 mt-3 flex flex-col justify-center items-center bg-blue-50 p-4 border-2">
-                  <div className="bg-button-container flex flex-row flex-1 mb-2 border-black">
-                    <div className="color-button flex justify-center items-center border-black border-2 px-8">
+                  <div className="bg-button-container flex flex-row flex-1 gap-1 mb-2 border-black">
+                    <div
+                      className={`color-button flex justify-center items-center border-black border-2 px-7 rounded hover:cursor-pointer hover:bg-black hover:text-white select-none ${isBgColorSelectOpen && "bg-black"} ${isBgColorSelectOpen && "text-white"}`}
+                      onClick={() => {
+                        setIsBgColorSelectOpen(true)
+                        setIsBgImageSelectOpen(false)
+                      }}>
                       Color
                     </div>
-                    <div className="image-button flex justify-center items-center border-black border-2 px-8">
+                    <div
+                      className={`image-button flex justify-center items-center border-black border-2 px-7 rounded hover:cursor-pointer hover:bg-black hover:text-white select-none ${isBgImageSelectOpen && "bg-black"} ${isBgImageSelectOpen && "text-white"}`}
+                      onClick={() => {
+                        setIsBgColorSelectOpen(false)
+                        setIsBgImageSelectOpen(true)
+                      }}>
                       Image
                     </div>
                   </div>
-                  <Sketch
-                    className="flex-1"
-                    color={bgColor}
-                    onChange={(color) => {
-                      onBgColorChange(color.hex)
-                      console.log(color.hex)
-                    }}
-                  />
+                  {isBgColorSelectOpen && (
+                    <Sketch
+                      className="flex-1"
+                      color={bgColor}
+                      onChange={(color) => {
+                        onBgColorChange(color.hex)
+                        console.log(color.hex)
+                      }}
+                    />
+                  )}
+                  {isBgImageSelectOpen && (
+                    <div className="flex flex-col gap-4 justify-center items-center">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(event) => {
+                          if (event.target.files === null) return
+                          const file = event.target.files[0]
+                          if (file) {
+                            const reader = new FileReader()
+                            reader.onloadend = () => {
+                              HandleBgImageChange(reader.result as string)
+                            }
+                            reader.readAsDataURL(file)
+                          }
+                        }}
+                      />
+                      {bgImage && (
+                        <div
+                          className="bg-image-preview h-32 w-64 rounded border-black border-2"
+                          style={{ backgroundImage: `url(${bgImage})` }}></div>
+                      )}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
