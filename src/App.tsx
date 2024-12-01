@@ -1,6 +1,6 @@
-import Footer from "./Components/Footer"
-import Hero from "./Components/Hero"
-import Topbar from "./Components/Topbar"
+import Footer from "./Components/Footer";
+import Hero from "./Components/Hero";
+import Topbar from "./Components/Topbar";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Hero />
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
